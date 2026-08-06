@@ -1,0 +1,49 @@
+# SOC / SIEM Home Lab
+
+**Status:** 🟡 In progress — building a home Security Operations Center to practice the full **attack → detect → verify** pipeline that SOC analysts work daily.
+
+A self-built lab where I monitor endpoints with a SIEM, launch real attacks from an attacker VM, and confirm detections across three layers (endpoint source log → SIEM engine output → dashboard). Built and documented from scratch as hands-on reinforcement of my CompTIA Security+ knowledge.
+
+## Architecture
+
+Four virtual machines on an isolated VirtualBox **host-only** network (`192.168.56.0/24`):
+
+| VM | Role | IP |
+|----|------|----|
+| Wazuh Server (Ubuntu 24.04) | SIEM — manager, indexer, dashboard | 192.168.56.10 |
+| Ubuntu Endpoint | Monitored host (Wazuh agent) | 192.168.56.20 |
+| Windows Endpoint | Monitored host (Wazuh agent + Sysmon) | 192.168.56.30 |
+| Kali Linux | Attacker | 192.168.56.40 |
+
+## What this lab demonstrates
+
+- **SIEM operations:** deploying Wazuh, enrolling agents, reading and triaging alerts
+- **Host-based detection:** Windows Event Logs, Sysmon, Linux auth logs, file integrity
+- **Attack simulation:** reconnaissance (Nmap) and exploitation (brute force, Metasploit) from Kali
+- **Detection engineering:** writing and tuning custom Wazuh rules
+- **Verification discipline:** cross-checking every detection from raw source log → `alerts.json` → dashboard, so alerts are understood, not just trusted
+
+## Tools
+
+`Wazuh` · `Sysmon` · `Kali Linux` · `Nmap` · `Hydra` · `Metasploit` · `Windows Active Directory` (stretch) · `Suricata` (stretch) · `VirtualBox`
+
+## Roadmap
+
+- [ ] **M0** — Prep: hypervisor, ISOs, host-only network
+- [ ] **M1** — Wazuh server up, dashboard reachable
+- [ ] **M2** — Ubuntu + Windows endpoints reporting as agents
+- [ ] **M3** — Attack from Kali (recon + brute force)
+- [ ] **M4** — Detection + three-layer verification + one custom rule
+- [ ] Stretch — Suricata forwarded into Wazuh (network + host visibility)
+- [ ] Stretch — Active Directory domain + domain-attack detection
+
+Full step-by-step build guide: [`SOC Lab - Build Plan.md`](SOC%20Lab%20-%20Build%20Plan.md)
+
+## Detections documented
+
+*(Add each as you complete it — attack, rule that caught it, and the three-layer screenshots.)*
+
+## Author
+
+**Samuel Kaiser** — Cybersecurity Analyst · CompTIA Security+
+GitHub: [brimblenot](https://github.com/brimblenot) · LinkedIn: [samuel-thomas-kaiser](https://www.linkedin.com/in/samuel-thomas-kaiser/)

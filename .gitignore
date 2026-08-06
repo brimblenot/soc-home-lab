@@ -1,0 +1,24 @@
+# === Huge VM / OS artifacts — never commit these ===
+*.iso
+*.vdi
+*.vmdk
+*.vhd
+*.ova
+*.vbox
+*.vbox-prev
+*.nvram
+
+# === Secrets ===
+*.env
+.env
+*wazuh-passwords*
+*password*.txt
+*.pem
+*.key
+
+# === OS junk ===
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Keep screenshots, configs, notes, and small logs — those are the evidence.

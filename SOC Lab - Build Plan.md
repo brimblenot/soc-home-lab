@@ -29,14 +29,14 @@ host: Laptop, 32 GB RAM, SSD (need ~200 GB free)
 
 ## Milestone 0 — Prep (Aug 6–7)
 
-- [ ] **Confirm free disk:** need ~200 GB free on an SSD. (Windows: This PC → C: drive.)
-- [ ] **Install VirtualBox** (+ the matching Extension Pack) from virtualbox.org.
-- [ ] **Download ISOs** (put them all in one folder):
+- [x] **Confirm free disk:** need ~200 GB free on an SSD. (Windows: This PC → C: drive.)
+- [x] **Install VirtualBox** (+ the matching Extension Pack) from virtualbox.org.
+- [x] **Download ISOs** (put them all in one folder):
   - Ubuntu Server 24.04.4 LTS — ubuntu.com/download/server
   - Windows 10 (or 11) Evaluation — microsoft.com/evalcenter (90-day, free)
   - Kali Linux (VirtualBox image or ISO) — kali.org/get-kali
   - *(optional, easy target)* Metasploitable2 — sourceforge.net/projects/metasploitable
-- [ ] **Create the Host-Only network:** VirtualBox → Tools (menu) → Network → Host-only Networks → **Create**. Note its name (usually `vboxnet0`). Set/confirm its subnet as `192.168.56.1/24` and **disable its DHCP server** (you'll use static IPs).
+- [x] **Create the Host-Only network:** VirtualBox → Tools (menu) → Network → Host-only Networks → **Create**. Note its name (usually `vboxnet0`). Set/confirm its subnet as `192.168.56.1/24` and **disable its DHCP server** (you'll use static IPs).
 
 **✅ Done when:** VirtualBox installed, four ISOs downloaded, host-only network `vboxnet0` exists on `192.168.56.0/24`.
 

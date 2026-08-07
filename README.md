@@ -29,8 +29,8 @@ Four virtual machines on an isolated VirtualBox **host-only** network (`192.168.
 
 ## Roadmap
 
-- [ ] **M0** — Prep: hypervisor, ISOs, host-only network
-- [ ] **M1** — Wazuh server up, dashboard reachable
+- [x] **M0** — Prep: hypervisor, ISOs, host-only network
+- [x] **M1** — Wazuh server up, dashboard reachable
 - [ ] **M2** — Ubuntu + Windows endpoints reporting as agents
 - [ ] **M3** — Attack from Kali (recon + brute force)
 - [ ] **M4** — Detection + three-layer verification + one custom rule

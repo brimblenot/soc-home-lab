@@ -39,6 +39,13 @@ Four virtual machines on an isolated VirtualBox **host-only** network (`192.168.
 
 Full step-by-step build guide: [`SOC Lab - Build Plan.md`](SOC%20Lab%20-%20Build%20Plan.md)
 
+## Progress
+
+### Milestone 1 — Wazuh SIEM deployed
+Single-node Wazuh (manager, indexer, dashboard) installed on Ubuntu Server 24.04, reachable over the isolated host-only network at `192.168.56.10`. Dashboard up and ready to receive agents.
+
+![Wazuh dashboard after initial deployment](screenshots/m1-wazuh-dashboard.png)
+
 ## Detections documented
 
 *(Add each as you complete it — attack, rule that caught it, and the three-layer screenshots.)*

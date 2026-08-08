@@ -31,7 +31,7 @@ Four virtual machines on an isolated VirtualBox **host-only** network (`192.168.
 
 - [x] **M0** — Prep: hypervisor, ISOs, host-only network
 - [x] **M1** — Wazuh server up, dashboard reachable
-- [ ] **M2** — Ubuntu + Windows endpoints reporting as agents
+- [x] **M2** — Ubuntu endpoint reporting as a Wazuh agent with live events _(Windows endpoint deferred)_
 - [ ] **M3** — Attack from Kali (recon + brute force)
 - [ ] **M4** — Detection + three-layer verification + one custom rule
 - [ ] Stretch — Suricata forwarded into Wazuh (network + host visibility)
@@ -45,6 +45,13 @@ Full step-by-step build guide: [`SOC Lab - Build Plan.md`](SOC%20Lab%20-%20Build
 Single-node Wazuh (manager, indexer, dashboard) installed on Ubuntu Server 24.04, reachable over the isolated host-only network at `192.168.56.10`. Dashboard up and ready to receive agents.
 
 ![Wazuh dashboard after initial deployment](screenshots/m1-wazuh-dashboard.png)
+
+### Milestone 2 — First endpoint enrolled and reporting
+Enrolled an Ubuntu Server endpoint (`192.168.56.20`) as a Wazuh agent over the host-only network. Verified the full data pipeline end to end — the agent connects to the manager over TCP/1514 (AES-encrypted), and generated activity (successful `sudo`, authentication events) is decoded, rule-matched, and surfaced in the Threat Hunting dashboard, correlated to PCI DSS requirements. Troubleshot an initial "never connected" state by pinning the manager address in the agent config and restarting the service.
+
+*Windows endpoint deferred — Windows 11 hit VirtualBox EFI/boot issues; will revisit with a Windows 10 VM.*
+
+![Ubuntu agent events in the Wazuh Threat Hunting dashboard](screenshots/m2-ubuntu-agent-events.png)
 
 ## Detections documented
 

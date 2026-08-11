@@ -32,7 +32,7 @@ Four virtual machines on an isolated VirtualBox **host-only** network (`192.168.
 - [x] **M0** — Prep: hypervisor, ISOs, host-only network
 - [x] **M1** — Wazuh server up, dashboard reachable
 - [x] **M2** — Ubuntu endpoint reporting as a Wazuh agent with live events _(Windows endpoint deferred)_
-- [ ] **M3** — Attack from Kali (recon + brute force)
+- [x] **M3** — Attack from Kali (recon + brute force) detected in Wazuh with MITRE ATT&CK correlation
 - [ ] **M4** — Detection + three-layer verification + one custom rule
 - [ ] Stretch — Suricata forwarded into Wazuh (network + host visibility)
 - [ ] Stretch — Active Directory domain + domain-attack detection
@@ -52,6 +52,13 @@ Enrolled an Ubuntu Server endpoint (`192.168.56.20`) as a Wazuh agent over the h
 *Windows endpoint deferred — Windows 11 hit VirtualBox EFI/boot issues; will revisit with a Windows 10 VM.*
 
 ![Ubuntu agent events in the Wazuh Threat Hunting dashboard](screenshots/m2-ubuntu-agent-events.png)
+
+### Milestone 3 — Attack simulation & detection
+Generated a live attack from a Kali Linux VM (`192.168.56.103`) against the monitored Ubuntu endpoint (`192.168.56.20`) and confirmed end-to-end detection in the SIEM. Recon with `nmap -sV` fingerprinted the exposed SSH service, then an SSH brute force with Hydra (`hydra -l sam -P /tmp/pw.txt ssh://192.168.56.20`) hammered the endpoint. The login did not succeed — as intended, the flood of failed authentications is the detection trigger. Wazuh decoded the sshd authentication failures and surfaced them on the endpoint's MITRE ATT&CK dashboard, correlating the activity to ATT&CK tactics (Initial Access, Persistence, Privilege Escalation, and Defense Evasion under the Valid Accounts technique). This closes the loop from the M2 pipeline: telemetry now feeds not just raw events but rule-matched, ATT&CK-mapped detections — the core function of a SOC.
+
+*Lab note: this session opened with a SIEM outage — the Wazuh server's 24 GB disk hit the OpenSearch flood-stage watermark (95%) from unbounded event archiving in `/var/ossec`. Diagnosed the disk exhaustion, cleared the archive logs, disabled `logall`/`logall_json`, and restored the indexer → manager → dashboard stack. Real operations experience recovering a SIEM knocked offline.*
+
+![Kali SSH brute force detected and correlated to MITRE ATT&CK tactics on ubuntu-endpoint](screenshots/m3-kali-attack-mitre.png)
 
 ## Detections documented
 

@@ -102,7 +102,9 @@ Restart the agent: `Restart-Service WazuhSvc`.
 
 ---
 
-## Milestone 3 — Attack (Aug 12–13)
+## Milestone 3 — Attack (Aug 12–13) — ✅ COMPLETE (Aug 11)
+
+**Result:** ran nmap + Hydra SSH brute force from Kali against the Ubuntu endpoint; Wazuh detected the failed-auth flood and correlated it to MITRE ATT&CK tactics on the endpoint's ATT&CK dashboard. Note: Kali came up on DHCP as `192.168.56.103` (not the planned static `.40`) — same host-only subnet, works fine. Also skipped rockyou in favor of a small inline `/tmp/pw.txt` list to avoid path/paste issues.
 
 **1. Kali VM:** import/create `kali-attacker`, 4 GB RAM, 2 CPU, Network = Host-only `vboxnet0`, static IP `192.168.56.40/24`. (Power this on ONLY during attacks.)
 

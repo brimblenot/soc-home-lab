@@ -58,7 +58,7 @@ Generated a live attack from a Kali Linux VM (`192.168.56.103`) against the moni
 
 *Lab note: this session opened with a SIEM outage — the Wazuh server's 24 GB disk hit the OpenSearch flood-stage watermark (95%) from unbounded event archiving in `/var/ossec`. Diagnosed the disk exhaustion, cleared the archive logs, disabled `logall`/`logall_json`, and restored the indexer → manager → dashboard stack. Real operations experience recovering a SIEM knocked offline.*
 
-![Kali SSH brute force detected and correlated to MITRE ATT&CK tactics on ubuntu-endpoint](screenshots/m3-m4-attack-detect-verify.png)
+![Kali SSH brute force detected and correlated to MITRE ATT&CK tactics on ubuntu-endpoint](screenshots/m3-kali-attack-mitre.png)
 
 ### Milestone 4 — Three-layer verification & custom detection rule
 Traced a single SSH brute force through all three layers to prove the detection is understood, not just trusted, and then authored a custom rule to catch it.

@@ -126,7 +126,11 @@ hydra -l root -P /usr/share/wordlists/rockyou.txt.gz ssh://192.168.56.20 -t 4 -f
 
 ---
 
-## Milestone 4 — Detection + three-layer verification (Aug 14–15) ← FINISH LINE
+## Milestone 4 — Detection + three-layer verification (Aug 14–15) ← FINISH LINE — ✅ COMPLETE (Aug 11)
+
+**Result:** verified the SSH brute force across all three layers (auth.log → alerts.json → dashboard). Built-in rules fired as `5760` → `2502` (level 10, T1110) — note the actual rule IDs were 5760/2502, not the 5710/5712/5763 the plan guessed. Found and fixed a real detection gap: the endpoint was collecting journald but not `/var/log/auth.log`, so sshd failures never alerted until that source was added. Wrote custom rule **100002** (level 12, 8 failures/60s, same source IP) — debugged a duplicate-ID collision with the shipped example rule 100001 — and confirmed it firing on a live attack.
+
+
 
 Wazuh ships with SSH brute-force rules out of the box (rule IDs ~5710/5712/5763). Confirm they fired, then **verify across all three layers** — this is the step that separates real understanding from tutorial-following.
 
